@@ -4,7 +4,6 @@ import { Deporte } from 'src/app/models/deporte.model';
 import { Modalidad } from 'src/app/models/modalidad.model';
 import { DeporteService } from 'src/app/services/deporte.service';
 import { ModalidadService } from 'src/app/services/modalidad.service';
-import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 import Swal from 'sweetalert2'
 
 @Component({
@@ -21,7 +20,7 @@ export class AddModalidadComponent implements OnInit {
     }
   };
 
-  constructor(private formBuilder: FormBuilder, private deporteService:DeporteService, private modalidadService: ModalidadService) { 
+  constructor(private deporteService:DeporteService, private modalidadService: ModalidadService) { 
       this.deporteService.listaDeporte().subscribe(
           x => this.lstDeportes = x
       );
