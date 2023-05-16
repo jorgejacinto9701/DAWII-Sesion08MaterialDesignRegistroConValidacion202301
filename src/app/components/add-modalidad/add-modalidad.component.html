@@ -1,50 +1,73 @@
+
 <div class="container">
-    <div class="col-12">
+  <form [formGroup]="formsRegistra" id="idFormModalidad">
+    <div class="row">
           <mat-toolbar color="primary" >    
             <span>Registra Modalidad</span>    
           </mat-toolbar>  
     </div>
-    <div class="col-12">
-            <mat-form-field >
+    <div class="row">
+            <mat-form-field class="col-md-4">
               <mat-label>Nombre</mat-label>
-              <input  matInput [(ngModel)] ="objModalidad.nombre" >
+              <input  matInput [(ngModel)] ="objModalidad.nombre"  formControlName="nombre">
+              <mat-hint style="color: red" *ngIf="formsRegistra.controls.nombre.touched && !(formsRegistra.controls.nombre.errors == null)" >     
+                    El nombre es de 3 a 30 caracteres 
+              </mat-hint>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field class="col-md-4">
               <mat-label>Número de Hombres</mat-label>
-              <input  matInput [(ngModel)] ="objModalidad.numHombres">
+              <input  matInput [(ngModel)] ="objModalidad.numHombres" formControlName="numHombres">
+              <mat-hint style="color: red" *ngIf="formsRegistra.controls.numHombres.touched && !(formsRegistra.controls.numHombres.errors == null)" >     
+                    El número de hombres es de dos dígitos
+              </mat-hint>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field class="col-md-4">
               <mat-label>Número de Mujeres</mat-label>
-              <input  matInput  [(ngModel)] ="objModalidad.numMujeres">
+              <input  matInput  [(ngModel)] ="objModalidad.numMujeres" formControlName="numMujeres">
+              <mat-hint style="color: red" *ngIf="formsRegistra.controls.numMujeres.touched && !(formsRegistra.controls.numMujeres.errors == null)" >     
+                    El número de mujeres es de dos dígitos
+             </mat-hint>
             </mat-form-field>
      </div>   
-     <div class="col-12">
-            <mat-form-field>
+     <div class="row">
+            <mat-form-field class="col-md-4">
               <mat-label>Edad Mínima</mat-label>
-              <input  matInput [(ngModel)] ="objModalidad.edadMinima" >
+              <input  matInput [(ngModel)] ="objModalidad.edadMinima"  formControlName="edadMinima">
+              <mat-hint style="color: red" *ngIf="formsRegistra.controls.edadMinima.touched && !(formsRegistra.controls.edadMinima.errors == null)" >     
+                La edad mínima es de 18 a 25 años
+             </mat-hint>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field class="col-md-4">
               <mat-label>Edad Máxima</mat-label>
-              <input  matInput [(ngModel)] ="objModalidad.edadMaxima">
+              <input  matInput [(ngModel)] ="objModalidad.edadMaxima" formControlName="edadMaxima">
+              <mat-hint style="color: red" *ngIf="formsRegistra.controls.edadMaxima.touched && !(formsRegistra.controls.edadMaxima.errors == null)" >     
+                La edad máxima es de 18 a 40 años
+             </mat-hint>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field class="col-md-4">
               <mat-label>Sede</mat-label>
-              <input matInput [(ngModel)] ="objModalidad.sede">
+              <input matInput [(ngModel)] ="objModalidad.sede" formControlName="sede">
+              <mat-hint style="color: red" *ngIf="formsRegistra.controls.sede.touched && !(formsRegistra.controls.sede.errors == null)" >     
+                La sede es de 3 a 30 caracteres 
+             </mat-hint>
             </mat-form-field>
      </div>
-     <div class="col-12">     
-            <mat-form-field>
+     <div class="row">     
+            <mat-form-field class="col-md-4">
               <mat-label>Deporte</mat-label>
-              <mat-select [(ngModel)] ="objModalidad.deporte!.idDeporte">
+              <mat-select [(ngModel)] ="objModalidad.deporte!.idDeporte" formControlName="deporte" >
                 <mat-option value="-1"> [Seleccione] </mat-option>
                 <ng-container *ngFor="let x of lstDeportes">
                   <mat-option value="{{x.idDeporte}}">{{x.nombre}}</mat-option>
                 </ng-container>
               </mat-select>
+              <mat-hint style="color: red" *ngIf="formsRegistra.controls.deporte.touched && !(formsRegistra.controls.deporte.errors == null)" >     
+                El deporte es obligatorio
+             </mat-hint>
             </mat-form-field> 
       </div>           
-      <div class="col-12">
-            <button mat-raised-button type="submit" color="primary" (click)="registra()" >Registra</button>
+      <div class="row">
+            <button mat-raised-button type="submit" color="primary" (click)="registra()" [disabled]="formsRegistra.invalid">Registra</button>
       </div>
+    </form>
 </div>
-
