@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "DAWII-Sesion08MaterialDesignRegistro202301": {
+    "DAWII-Sesion08MaterialDesignRegistroConValidacion202301": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "DAWII-Sesion08MaterialDesignRegistro202301:build:production"
+              "browserTarget": "DAWII-Sesion08MaterialDesignRegistroConValidacion202301:build:production"
             },
             "development": {
-              "browserTarget": "DAWII-Sesion08MaterialDesignRegistro202301:build:development"
+              "browserTarget": "DAWII-Sesion08MaterialDesignRegistroConValidacion202301:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "DAWII-Sesion08MaterialDesignRegistro202301:build"
+            "browserTarget": "DAWII-Sesion08MaterialDesignRegistroConValidacion202301:build"
           }
         },
         "test": {

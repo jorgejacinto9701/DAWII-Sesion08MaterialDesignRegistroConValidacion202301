@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'DAWII-Sesion08MaterialDesignRegistro202301';
+  title = 'DAWII-Sesion08MaterialDesignRegistroConValidacion202301';
 }
