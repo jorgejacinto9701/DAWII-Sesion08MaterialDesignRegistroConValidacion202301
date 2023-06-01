@@ -1,6 +1,6 @@
 
 <div class="container">
-  <form  id="idFormModalidad">
+  <form id="idFormModalidad" [formGroup]="formRegistra" >
     <div class="row">
           <mat-toolbar color="primary" >    
             <span>Registra Modalidad</span>    
@@ -10,34 +10,81 @@
             <mat-form-field class="col-md-4">
               <mat-label>Nombre</mat-label>
               <input  matInput [(ngModel)] ="objModalidad.nombre"  formControlName="nombre">
-            
+              <mat-hint style="color:red" *ngIf="formRegistra.controls.nombre.touched">
+                  <span *ngIf="formRegistra.controls.nombre.hasError('required')">
+                    El Nombre es requerido
+                  </span>
+                  <span *ngIf="formRegistra.controls.nombre.hasError('pattern')">
+                    El Nombre es 3 a 30 caracteres
+                  </span>
+              </mat-hint>
             </mat-form-field>
+            
             <mat-form-field class="col-md-4">
               <mat-label>Número de Hombres</mat-label>
               <input  matInput [(ngModel)] ="objModalidad.numHombres" formControlName="numHombres">
-             
+              <mat-hint style="color:red" *ngIf="formRegistra.controls.numHombres.touched ">
+                <span *ngIf="formRegistra.controls.numHombres.hasError('required')">
+                  El Número de Hombres es requerido
+                </span>
+                <span *ngIf="formRegistra.controls.numHombres.hasError('pattern')">
+                  El Número de Hombres es dos dígitos
+                </span> 
+              </mat-hint>
             </mat-form-field>
+
             <mat-form-field class="col-md-4">
               <mat-label>Número de Mujeres</mat-label>
               <input  matInput  [(ngModel)] ="objModalidad.numMujeres" formControlName="numMujeres">
-            
+              <mat-hint style="color:red" *ngIf="formRegistra.controls.numMujeres.touched ">
+                <span *ngIf="formRegistra.controls.numMujeres.hasError('required')">
+                  El Número de Mujeres es requerido
+                </span>
+                <span *ngIf="formRegistra.controls.numMujeres.hasError('pattern')">
+                  El Número de Mujeres  es dos dígito
+                </span> 
+              </mat-hint>
             </mat-form-field>
      </div>   
      <div class="row">
             <mat-form-field class="col-md-4">
               <mat-label>Edad Mínima</mat-label>
               <input  matInput [(ngModel)] ="objModalidad.edadMinima"  formControlName="edadMinima">
-              
+              <mat-hint style="color:red" *ngIf="formRegistra.controls.edadMinima.touched ">
+                <span *ngIf="formRegistra.controls.edadMinima.hasError('required')">
+                  La edad mínima es requerido
+                </span>
+                <span *ngIf="formRegistra.controls.edadMinima.hasError('min') || formRegistra.controls.edadMinima.hasError('max')">
+                  ELa edad mínima  está entre 18  y 25
+                </span> 
+              </mat-hint>
             </mat-form-field>
+
             <mat-form-field class="col-md-4">
               <mat-label>Edad Máxima</mat-label>
               <input  matInput [(ngModel)] ="objModalidad.edadMaxima" formControlName="edadMaxima">
-           
+              <mat-hint style="color:red" *ngIf="formRegistra.controls.edadMaxima.touched">
+                <span *ngIf="formRegistra.controls.edadMaxima.hasError('required')">
+                  La edad máxima es requerido
+                </span>
+                <span *ngIf="formRegistra.controls.edadMaxima.hasError('min') || formRegistra.controls.edadMaxima.hasError('max')">
+                  ELa edad máxima  está entre 25  y 40
+                </span> 
+              </mat-hint>
             </mat-form-field>
+
             <mat-form-field class="col-md-4">
               <mat-label>Sede</mat-label>
               <input matInput [(ngModel)] ="objModalidad.sede" formControlName="sede">
+              <mat-hint style="color:red" *ngIf="formRegistra.controls.sede.touched">
+                <span *ngIf="formRegistra.controls.sede.hasError('required')">
+                  El sede es requerido
+                </span>
+                <span *ngIf="formRegistra.controls.sede.hasError('pattern')">
+                  El sede es 3 a 30 caracteres
+                </span>
 
+              </mat-hint>
             </mat-form-field>
      </div>
      <div class="row">     
@@ -49,12 +96,14 @@
                   <mat-option value="{{x.idDeporte}}">{{x.nombre}}</mat-option>
                 </ng-container>
               </mat-select>
-           
+              <mat-hint style="color:red" *ngIf="!(formRegistra.controls.deporte.errors == null) && formRegistra.controls.deporte.touched">
+                El deporte es obligatorio
+              </mat-hint>  
             </mat-form-field> 
       </div>           
       <div class="row">
             <button mat-raised-button type="submit" color="primary" (click)="registra()"
-             >Registra</button>
+             [disabled]="formRegistra.invalid">Registra</button>
       </div>
     </form>
 </div>

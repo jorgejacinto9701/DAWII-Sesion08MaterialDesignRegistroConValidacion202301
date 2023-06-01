@@ -21,7 +21,15 @@ export class AddModalidadComponent implements OnInit {
     }
   };
 
-
+  formRegistra = this.formBuilder.group({
+     nombre: ['', [Validators.required, Validators.pattern('[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\\s]{3,30}')] ],
+     numHombres: ['', [Validators.required, Validators.pattern('[0-9]{1,2}')]],
+     numMujeres: ['', [Validators.required, Validators.pattern('[0-9]{1,2}')]],
+     edadMinima: ['', [Validators.required, Validators.min(18), Validators.max(25)]],
+     edadMaxima: ['', [Validators.required, Validators.min(25), Validators.max(40)]],
+     sede: ['', [Validators.required, Validators.pattern('[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\\s]{3,30}')]],
+     deporte: ['', [Validators.min(0)]],
+  });
 
   constructor(private formBuilder: FormBuilder,private deporteService:DeporteService, private modalidadService: ModalidadService) { 
       this.deporteService.listaDeporte().subscribe(
@@ -30,11 +38,11 @@ export class AddModalidadComponent implements OnInit {
   }
 
   registra(){
-  
+      if (this.formRegistra.valid){
             this.modalidadService.registraModalidad(this.objModalidad).subscribe(
               x => Swal.fire({icon: 'info',title: 'Resultado del Registro',text: x.errores}) 
             );
-    
+      }
   }  
 
   ngOnInit(): void {
